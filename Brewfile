@@ -21,6 +21,7 @@ cask "android-platform-tools"
 cask "amethyst"
 cask "google-drive-file-stream"
 cask "bartender"
+cask "controlplane"
 
 ## Development
 #cask "iterm2"
