@@ -43,10 +43,13 @@ brew bundle
 ### NVM configuration
 
 ```bash
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
+touch ~/.zshrc
 touch ~/.bash_profile
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
 echo "export NVM_DIR=~/.nvm" >> ~/.bash_profile
 echo "source $(brew --prefix nvm)/nvm.sh" >> ~/.bash_profile
+
+git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
 ```
 
 ## Config
