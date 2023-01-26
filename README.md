@@ -16,7 +16,7 @@ sh README.sh
 
 ## Install software
 
-### Install Homebrew
+### Homebrew
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 echo '# Set PATH, MANPATH, etc., for Homebrew.' >> /Users/gilliamflebus/.zprofile
