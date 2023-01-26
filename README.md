@@ -16,21 +16,14 @@ sh README.sh
 
 ## Install software
 
-### Change ownership of necessary files / directories
-```bash
-sudo chown -R $(whoami) /usr/local/etc
-```
-
 ### Install Homebrew
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/gilliam/.zprofile
+echo '# Set PATH, MANPATH, etc., for Homebrew.' >> /Users/gilliamflebus/.zprofile
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/gilliamflebus/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
-```
-
-### Homebrew install
-```bash
 sudo chown -R $(whoami) /usr/local/bin /usr/local/etc /usr/local/sbin
+
 brew bundle
 ```
 
@@ -67,7 +60,7 @@ echo 'ZSH_THEME="powerlevel10k/powerlevel10k"' >> ~/.zshrc
 chsh -s $(which zsh)
 
 # Increase history size
-echo HISTFILESIZE=10000000 >> ~/.bash_profile
+echo HISTFILESIZE=10000000 >> ~/.zprofile
 
 # Use `zsh-completions`
 chmod -R go-w '/usr/local/share/zsh'
@@ -85,9 +78,7 @@ fi" >> ~/.zshrc
 ### ASDF (Java)
 ```bash
 echo ". $(brew --prefix asdf)/libexec/asdf.sh" >> ~/.zprofile
-echo ". $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash" >> ~/.zprofile
 echo ". ~/.asdf/plugins/java/set-java-home.zsh" >> ~/.zprofile
-
 
 asdf plugin-add java
 asdf install java openjdk-19
