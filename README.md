@@ -1,6 +1,6 @@
 # Gillimac
 
-Running these commands will extract all of the code blocks from this README to README.sh and run it to configure MacOS according to my personal preferences.
+> Run these commands to extract all `bash` code blocks from this README to `README.sh`, then run `README.sh` to configure MacOS according to my personal preferences.
 
 ```sh
 perl extract-scripts.pl > README.sh
@@ -8,13 +8,13 @@ sh README.sh
 ```
 
 ## TODO
-- Everything terminal related [Kevin Smets](https://gist.github.com/kevin-smets/8568070), [Owen Caulfield](https://medium.com/@caulfieldOwen/youre-missing-out-on-a-better-mac-terminal-experience-d73647abf6d7)
-- Don't use .bash_profile, only [.zsh files](https://zsh.sourceforge.io/Intro/intro_3.html)
-- [TLDR Man Pages](https://tldr.sh/)
-- .zprofile
+- [] Everything terminal related [Kevin Smets](https://gist.github.com/kevin-smets/8568070), [Owen Caulfield](https://medium.com/@caulfieldOwen/youre-missing-out-on-a-better-mac-terminal-experience-d73647abf6d7)
+- [] Don't use .bash_profile, only [.zsh files](https://zsh.sourceforge.io/Intro/intro_3.html)
+- [] .zprofile
+- [] Run nvm through zshell plugin
 
 
-## Homebrew
+## Install software
 
 ### Change ownership of necessary files / directories
 ```bash
@@ -28,17 +28,21 @@ echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/gilliam/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
-### Install all software
+### Homebrew install
 ```bash
 sudo chown -R $(whoami) /usr/local/bin /usr/local/etc /usr/local/sbin
 brew bundle
 ```
 
-
-## Config
-
-## NVM
+### TLDR Man Pages
 ```bash
+npm install -g tldr
+```
+
+## Configure software
+
+### NVM
+```todo
 touch ~/.zshrc
 touch ~/.bash_profile
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
@@ -48,7 +52,7 @@ nvm use latest
 ```
 
 ### Terminal
-```bash
+```todo
 # Oh-My-Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
@@ -80,9 +84,9 @@ fi" >> ~/.zshrc
 
 ### ASDF (Java)
 ```bash
-echo ". $(brew --prefix asdf)/libexec/asdf.sh" >> ~/.bash_profile
-echo ". $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash" >> ~/.bash_profile
-echo ". ~/.asdf/plugins/java/set-java-home.zsh" >> ~/.bash_profile
+echo ". $(brew --prefix asdf)/libexec/asdf.sh" >> ~/.zprofile
+echo ". $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash" >> ~/.zprofile
+echo ". ~/.asdf/plugins/java/set-java-home.zsh" >> ~/.zprofile
 
 
 asdf plugin-add java
