@@ -13,6 +13,7 @@ sh README.sh
 - [ ] Don't use .bash_profile, only [.zsh files](https://zsh.sourceforge.io/Intro/intro_3.html)
 - [ ] .zprofile
 - [ ] Run nvm through zshell plugin
+- [ ] Check out Ansible
 
 ## Install software
 
