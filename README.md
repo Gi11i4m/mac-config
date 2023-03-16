@@ -107,6 +107,7 @@ git config --global user.email "gi11i4m@gmail.com"
 git config --global pull.rebase true
 git config --global fetch.prune true
 git config --global diff.colorMoved zebra
+git config --global core.editor "code --wait"
 
 # Generate a new private / public key pair to add to GitHub, GitLab, ...
 ssh-keygen -o -t rsa -b 4096
