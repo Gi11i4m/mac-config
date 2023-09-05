@@ -14,6 +14,7 @@ sh README.sh
 - [ ] .zprofile
 - [ ] Run nvm through zshell plugin
 - [ ] Check out Ansible
+- [ ] Use ASDF instead of NVM
 
 ## Install software
 
@@ -36,6 +37,14 @@ npm install -g tldr
 ```
 
 ## Configure software
+
+### Mackup
+```
+echo "Before continuing to restore backup, configure Google Drive and press enter to continue..."
+read
+cp ./.mackup.cfg ~/.mackup.cfg
+mackup restore
+```
 
 ### NVM
 
