@@ -1,4 +1,10 @@
-.DS_Store
 README.sh
 before
 after
+
+# System
+.DS_Store
+
+# IDE
+/.idea/
+/mac-config.iml
