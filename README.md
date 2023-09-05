@@ -157,15 +157,19 @@ defaults write com.apple.WindowManager GloballyEnabled 0
 ```bash
 # Disable automatic capitalization
 defaults write -globalDomain NSAutomaticCapitalizationEnabled 0
+# Enable function keys by default
+defaults write -globalDomain com.apple.keyboard.fnState 1 # doesn't seem to work...
 ```
 
 ### Mouse
 
 ```bash
 # Click by tapping
-defaults write com.apple.AppleMultitouchTrackpad Clicking 1
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking 1
 # Enable expose gesture
 defaults write com.apple.dock showAppExposeGestureEnabled 1
+# Increase trackpad speed
+defaults write -globalDomain com.apple.trackpad.scaling 2.5
 ```
 
 ### Finder
@@ -188,6 +192,7 @@ defaults write com.apple.finder QuitMenuItem -bool true
 ```bash
 # Add extra items to system menu
 defaults write com.apple.systemuiserver menuExtras -array "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" "/System/Library/CoreServices/Menu Extras/Clock.menu" "/System/Library/CoreServices/Menu Extras/Displays.menu" "/System/Library/CoreServices/Menu Extras/Volume.menu"
+defaults write com.apple.controlcenter "NSStatusItem Visible Bluetooth" 1
 ```
 
 ### Restart UI to enable changes

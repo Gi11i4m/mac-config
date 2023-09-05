@@ -6,13 +6,16 @@ tap "homebrew/cask-versions"
 tap "homebrew/cask-fonts"
 
 ## Personal
-cask "google-chrome"
+cask "arc"
 cask "slack"
 cask "spotify"
 cask "cheatsheet"
 cask "gimp"
 cask "adobe-acrobat-reader"
 cask "bartender"
+cask "nvidia-geforce-now"
+cask "beeper"
+cask "raycast"
 cask "google-drive"
 
 ## Development
