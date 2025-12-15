@@ -12,11 +12,13 @@ sh README.sh
 - [ ] Everything terminal related [Kevin Smets](https://gist.github.com/kevin-smets/8568070), [Owen Caulfield](https://medium.com/@caulfieldOwen/youre-missing-out-on-a-better-mac-terminal-experience-d73647abf6d7)
 - [ ] Don't use .bash_profile, only [.zsh files](https://zsh.sourceforge.io/Intro/intro_3.html)
 - [ ] .zprofile
-- [ ] Run nvm through zshell plugin
-- [ ] Check out Ansible
 - [ ] Use ASDF instead of NVM
 
+
 ## Install software
+
+### RCMD
+RCMD has to be installed manually, from the [App Store](https://apps.apple.com/be/app/rcmd-app-switcher/id1596283165?mt=12)
 
 ### Homebrew
 
@@ -28,12 +30,6 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 sudo chown -R $(whoami) /usr/local/bin /usr/local/etc /usr/local/sbin
 
 brew bundle
-```
-
-### TLDR Man Pages
-
-```bash
-npm install -g tldr
 ```
 
 ## Configure software
