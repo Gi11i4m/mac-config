@@ -23,32 +23,25 @@ RCMD has to be installed manually, from the [App Store](https://apps.apple.com/b
 ### Homebrew
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-echo '# Set PATH, MANPATH, etc., for Homebrew.' >> /Users/gilliamflebus/.zprofile
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/gilliamflebus/.zprofile
+NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 sudo chown -R $(whoami) /usr/local/bin /usr/local/etc /usr/local/sbin
 
 brew bundle
+
+echo '# Set PATH, MANPATH, etc., for Homebrew.' >> /Users/gilliamflebus/.zprofile
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/gilliamflebus/.zprofile
 ```
 
-## Configure software
+### ASDF
 
-### Mackup
-```
-echo "Before continuing to restore backup, configure Google Drive and press enter to continue..."
-read
-cp ./.mackup.cfg ~/.mackup.cfg
-mackup restore
-```
+```bash
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+asdf plugin add deno https://github.com/asdf-community/asdf-deno.git
+asdf plugin add java https://github.com/halcyon/asdf-java.git
 
-### NVM
-
-```todo
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
-echo "export NVM_DIR=~/.nvm" >> ~/.bash_profile
-echo "source $(brew --prefix nvm)/nvm.sh" >> ~/.bash_profile
-nvm use latest
+mv .tool-versions ~/.tool-versions
+asdf install
 ```
 
 ### Terminal
@@ -83,22 +76,11 @@ echo "\nif type brew &>/dev/null; then
 fi" >> ~/.zshrc
 ```
 
-### ASDF (Java)
-
-```bash
-echo ". $(brew --prefix asdf)/libexec/asdf.sh" >> ~/.zprofile
-echo ". ~/.asdf/plugins/java/set-java-home.zsh" >> ~/.zprofile
-
-asdf plugin-add java
-asdf install java openjdk-19
-asdf global java openjdk-19
-```
-
 ### VS Code
 
 ```bash
 # Fira Code Font
-curl -sL https://github.com/tonsky/FiraCode/releases/download/1.206/FiraCode_1.206.zip > FiraCode.zip
+curl -sL https://github.com/tonsky/FiraCode/releases/download/6.2/Fira_Code_v6.2.zip > FiraCode.zip
 unzip FiraCode.zip -d FiraCode
 mv FiraCode/ttf/* ~/Library/Fonts/
 rm -rf FiraCode/ FiraCode.zip
@@ -112,7 +94,7 @@ git config --global user.email "gi11i4m@gmail.com"
 git config --global pull.rebase true
 git config --global fetch.prune true
 git config --global diff.colorMoved zebra
-git config --global core.editor "code --wait"
+git config --global core.editor "idea --wait"
 
 # Generate a new private / public key pair to add to GitHub, GitLab, ...
 ssh-keygen -o -t rsa -b 4096
@@ -134,9 +116,9 @@ defaults write -globalDomain NSAutomaticSpellingCorrectionEnabled 0
 ### Dock
 
 ```bash
-m dock autohide YES
-m dock magnification YES
-m dock prune
+m dock --autohide enable
+m dock --magnification enable
+m dock --prune
 ```
 
 ### Desktop
@@ -171,7 +153,7 @@ defaults write -globalDomain com.apple.trackpad.scaling 2.5
 ### Finder
 
 ```bash
-m finder showhiddenfiles YES
+m finder --showhiddenfiles enable
 # Don't show the tags
 defaults write com.apple.finder ShowRecentTags 0
 # Preferred view style → three columns
