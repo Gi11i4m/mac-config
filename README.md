@@ -13,6 +13,7 @@ sh README.sh
 - [ ] Don't use .bash_profile, only [.zsh files](https://zsh.sourceforge.io/Intro/intro_3.html)
 - [ ] .zprofile
 - [ ] Use ASDF instead of NVM
+- [ ] Add [Homebrew Autoupdate](https://github.com/DomT4/homebrew-autoupdate) instructions
 
 
 ## Install software
