@@ -15,6 +15,7 @@ setopt AUTO_CD AUTO_PUSHD PUSHD_IGNORE_DUPS PUSHD_SILENT INTERACTIVE_COMMENTS
 
 # Completion
 fpath=("$HOMEBREW_PREFIX/share/zsh-completions" $fpath)
+[[ -d ~/.zsh/completions ]] && fpath=(~/.zsh/completions $fpath)  # e.g. deno's installer puts _deno.zsh here
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' menu select

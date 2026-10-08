@@ -22,6 +22,7 @@ sudo chown -R $(whoami) /usr/local/bin /usr/local/etc /usr/local/sbin
 brew bundle
 
 # Update and upgrade Homebrew packages every 12 hours, also after login
+brew trust domt4/autoupdate
 brew autoupdate start 43200 --upgrade --cleanup
 ```
 
