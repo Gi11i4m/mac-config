@@ -1,0 +1,79 @@
+# Pastel powerline segments. The arrow () comes from the terminal font (Fira Code has it);
+# icons are emoji because Omnigent's terminal can't render Nerd Font icons. Each segment ends
+# in its own arrow; .zshrc joins each arrow to the background of the segment after it.
+# Colours are 256-colour indexes.
+add_newline = false
+command_timeout = 1000
+
+format = """
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$java\
+$nodejs\
+$deno\
+$bun\
+$python\
+${env_var.AWS_PROFILE}\
+$cmd_duration\
+$line_break\
+$character"""
+
+[directory]
+format = '[ $path ]($style)[$read_only]($read_only_style)[](fg:153)'
+style = 'bg:153 fg:236 bold'
+read_only = ' ro '
+read_only_style = 'bg:153 fg:124'
+truncation_length = 3
+
+[git_branch]
+format = '[ $branch ]($style)'
+style = 'bg:183 fg:236'
+
+[git_state]
+format = '[$state( $progress_current/$progress_total) ]($style)'
+style = 'bg:183 fg:53 bold'
+
+[git_status]
+format = '([$all_status$ahead_behind ]($style))[](fg:183)'
+style = 'bg:183 fg:53 bold'
+
+[java]
+format = '[ ☕ $version ]($style)[](fg:194)'
+version_format = '${raw}'
+style = 'bg:194 fg:236'
+
+[nodejs]
+format = '[ ⬢ $version ]($style)[](fg:194)'
+version_format = '${raw}'
+style = 'bg:194 fg:236'
+
+[deno]
+format = '[ 🦕 $version ]($style)[](fg:194)'
+version_format = '${raw}'
+style = 'bg:194 fg:236'
+
+[bun]
+format = '[ 🥟 $version ]($style)[](fg:194)'
+version_format = '${raw}'
+style = 'bg:194 fg:236'
+
+[python]
+format = '[ 🐍 $version( $virtualenv) ]($style)[](fg:194)'
+version_format = '${raw}'
+style = 'bg:194 fg:236'
+
+# Only when a profile is explicitly selected; the [default] profile would otherwise show everywhere.
+[env_var.AWS_PROFILE]
+format = '[ aws $env_value ]($style)[](fg:223)'
+style = 'bg:223 fg:236'
+
+[cmd_duration]
+min_time = 2000
+format = '[ took $duration]($style)'
+style = 'fg:180'
+
+[character]
+success_symbol = '[❯](bold fg:116)'
+error_symbol = '[❯](bold fg:210)'

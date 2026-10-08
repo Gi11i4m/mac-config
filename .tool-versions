@@ -1,3 +1,4 @@
 nodejs 25.2.1
 deno 2.6.0
 java openjdk-25
+scaleway-cli 2.62.0

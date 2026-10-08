@@ -1,0 +1,9 @@
+# Set PATH, MANPATH, etc., for Homebrew.
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+[[ -f ~/.asdf/plugins/java/set-java-home.zsh ]] && . ~/.asdf/plugins/java/set-java-home.zsh
+
+alias claudes='sbx run claude'
+
+# JetBrains Toolbox shell scripts
+[[ -d "$HOME/Library/Application Support/JetBrains/Toolbox/scripts" ]] && export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"

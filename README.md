@@ -7,15 +7,6 @@ perl extract-scripts.pl > README.sh
 sh README.sh
 ```
 
-## TODO
-
-- [ ] Everything terminal related [Kevin Smets](https://gist.github.com/kevin-smets/8568070), [Owen Caulfield](https://medium.com/@caulfieldOwen/youre-missing-out-on-a-better-mac-terminal-experience-d73647abf6d7)
-- [ ] Don't use .bash_profile, only [.zsh files](https://zsh.sourceforge.io/Intro/intro_3.html)
-- [ ] .zprofile
-- [ ] Use ASDF instead of NVM
-- [ ] Add [Homebrew Autoupdate](https://github.com/DomT4/homebrew-autoupdate) instructions
-
-
 ## Install software
 
 ### RCMD
@@ -30,8 +21,8 @@ sudo chown -R $(whoami) /usr/local/bin /usr/local/etc /usr/local/sbin
 
 brew bundle
 
-echo '# Set PATH, MANPATH, etc., for Homebrew.' >> /Users/gilliamflebus/.zprofile
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/gilliamflebus/.zprofile
+# Update and upgrade Homebrew packages every 12 hours, also after login
+brew autoupdate start 43200 --upgrade --cleanup
 ```
 
 ### ASDF
@@ -40,6 +31,7 @@ echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/gilliamflebus/.zprofi
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 asdf plugin add deno https://github.com/asdf-community/asdf-deno.git
 asdf plugin add java https://github.com/halcyon/asdf-java.git
+asdf plugin add scaleway-cli https://github.com/albarralnunez/asdf-plugin-scaleway-cli
 
 mv .tool-versions ~/.tool-versions
 asdf install
@@ -47,34 +39,21 @@ asdf install
 
 ### Terminal
 
-```todo
-# Oh-My-Zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
-git clone https://github.com/asdf-vm/asdf.git ~/.oh-my-zsh/custom/plugins/asdf
-git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
-plugins+=zsh-nvm
-plugins+=asdf
+Zsh with a [Starship](https://starship.rs) prompt (pastel powerline segments; the arrows need a terminal font with Powerline glyphs, such as Fira Code below), autosuggestions, syntax highlighting, fzf, zoxide, eza and a tmux config. The dotfiles live in `dotfiles/` and are symlinked into place, so editing `~/.zshrc` etc. edits this repo. Put machine-specific shell settings in `~/.zshrc.local`, which is sourced if present and not kept in this repo.
 
-echo 'ZSH_THEME="powerlevel10k/powerlevel10k"' >> ~/.zshrc
-
+```bash
 # Use zshell by default
 chsh -s $(which zsh)
 
-# Increase history size
-echo HISTFILESIZE=10000000 >> ~/.zprofile
+# Link dotfiles
+mkdir -p ~/.config
+ln -sf "$PWD/dotfiles/zshrc" ~/.zshrc
+ln -sf "$PWD/dotfiles/zprofile" ~/.zprofile
+ln -sf "$PWD/dotfiles/tmux.conf" ~/.tmux.conf
+ln -sf "$PWD/dotfiles/starship.toml" ~/.config/starship.toml
 
-# Use `zsh-completions`
-chmod -R go-w '/usr/local/share/zsh'
-chmod -R go-w /usr/local/share/zsh/site-functions
-chmod -R go-w /usr/local/share
-
-echo "\nif type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-
-    autoload -Uz compinit
-    compinit
-fi" >> ~/.zshrc
+# compinit refuses group-writable completion directories
+chmod go-w /opt/homebrew/share
 ```
 
 ### VS Code
@@ -96,6 +75,11 @@ git config --global pull.rebase true
 git config --global fetch.prune true
 git config --global diff.colorMoved zebra
 git config --global core.editor "idea --wait"
+# Show diffs through delta
+git config --global core.pager delta
+git config --global interactive.diffFilter "delta --color-only"
+git config --global delta.navigate true
+git config --global merge.conflictStyle zdiff3
 
 # Generate a new private / public key pair to add to GitHub, GitLab, ...
 ssh-keygen -o -t rsa -b 4096
@@ -161,7 +145,7 @@ defaults write com.apple.finder ShowRecentTags 0
 defaults write com.apple.finder CustomViewStyle clmv
 # Location for new window → home folder
 defaults write com.apple.finder NewWindowTarget PfHm
-defaults write com.apple.finder NewWindowTargetPath "file:///Users/${whoami}/"
+defaults write com.apple.finder NewWindowTargetPath "file://$HOME/"
 # Make Finder quitable
 defaults write com.apple.finder QuitMenuItem -bool true
 ```
