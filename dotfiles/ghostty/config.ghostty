@@ -1,0 +1,23 @@
+keybind = global:cmd+ctrl+alt+shift+t=toggle_quick_terminal
+quick-terminal-position = top
+quick-terminal-animation-duration = 0.15
+quick-terminal-autohide = true
+
+# No Dock icon; Ghostty only lives behind the hotkey
+macos-hidden = always
+quit-after-last-window-closed = false
+
+# Semi-transparent, with blur
+background-opacity = 0.85
+background-blur = 20
+
+# No window decorations
+window-decoration = none
+macos-titlebar-style = hidden
+
+# No window at launch, so the first terminal is the quick terminal's, opened by the hotkey
+initial-window = false
+
+# First terminal only: pick a recent directory (zoxide + fzf), then start zsh there.
+# New tabs, splits and windows run the normal shell.
+initial-command = ~/Projects/mac-config/dotfiles/ghostty/start-picker.sh
