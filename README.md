@@ -59,7 +59,7 @@ chmod go-w /opt/homebrew/share
 
 ### Ghostty
 
-[Ghostty](https://ghostty.org) runs as a drop-down quick terminal on Hyper+T (top of the screen, hides when it loses focus, no Dock icon, translucent and borderless). Its first terminal opens a picker of recent directories (zoxide in fzf: arrows or type to filter, Enter opens there, Esc opens `~`); new tabs and splits start the shell normally. The global hotkey needs Ghostty enabled under System Settings → Privacy & Security → Accessibility, and `macos-hidden` only takes effect after quitting Ghostty completely and starting it again.
+[Ghostty](https://ghostty.org) runs as a drop-down quick terminal on Hyper+T (top of the screen, hides when it loses focus, no Dock icon, translucent and borderless). The global hotkey needs Ghostty enabled under System Settings → Privacy & Security → Accessibility, and `macos-hidden` only takes effect after quitting Ghostty completely and starting it again.
 
 ```bash
 GHOSTTY_DIR="$HOME/Library/Application Support/com.mitchellh.ghostty"
@@ -67,7 +67,6 @@ mkdir -p "$GHOSTTY_DIR"
 # Keep an existing config that isn't our symlink
 [ -e "$GHOSTTY_DIR/config.ghostty" ] && [ ! -L "$GHOSTTY_DIR/config.ghostty" ] && mv "$GHOSTTY_DIR/config.ghostty" "$GHOSTTY_DIR/config.ghostty.bak"
 ln -sf "$PWD/dotfiles/ghostty/config.ghostty" "$GHOSTTY_DIR/config.ghostty"
-chmod +x dotfiles/ghostty/start-picker.sh
 ```
 
 ### VS Code
